@@ -2,6 +2,10 @@
 
 My personal fork of the Interpod rockbox theme for 320x240 resolution devices
 
+## Changes
+
+- __WPS: Add clock to top left corner.__ Appears before player status and hold icons. Removes sleep timer.
+
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │   d888888b d8b   db d888888b d88888b d8888b. d8888b.  .d88b.  d8888b.   │

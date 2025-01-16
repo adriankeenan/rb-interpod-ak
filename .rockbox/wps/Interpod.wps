@@ -59,8 +59,6 @@
 # 	Display volume bar while adjusting volume
 %?mv(1.2)<%Vd(volumebar)|%Vd(timeprogresslossless)%?if(%mp,<,4)<%Vd(pb)|%Vd(pb_active)>>
 #
-#       Sleep Timer
-%?bs<%Vd(sleeptimer)>
 #
 #
 # ---------
@@ -81,7 +79,7 @@
 %V(0,0,-,-,-)
 #
 # 	Player Status Icon, in upper left corner
-%V(3,5,15,16,-)
+%V(49,5,15,16,-)
 %Vf(000000)
 %Vb(f8f8f8)
 # 	Display appropriate icon (P) for the current state
@@ -107,12 +105,12 @@
 #
 #
 # 	Hold Slider Icon, to the right of the player status icon
-%Vl(lock,24,7,9,12,-)
+%Vl(lock,70,7,9,12,-)
 %Vb(f8f8f8)
 %xd(Ab)
 #
 #	Unlocked Hold slider
-%Vl(unlocked,24,7,9,12,-)
+%Vl(unlocked,70,7,9,12,-)
 %Vb(f8f8f8)
 #
 #	Battery percentage
@@ -122,11 +120,11 @@
 %?if(%bl, =, 100)<CGD|%bl %%>
 #
 #
-#	Sleep Timer
-%Vl(sleeptimer,37,5,53,15,3)
+#	Clock
+%V(5,5,43,15,3)
 %Vf(000000)
 %Vb(f8f8f8)
-%bs
+%cH:%cM
 #
 # --------------------------------------
 # -----------  Song Info   -------------
