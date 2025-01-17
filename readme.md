@@ -1,8 +1,10 @@
 # Interpod
 
-My personal fork of the Interpod rockbox theme for 320x240 resolution devices
+My personal fork of the Interpod rockbox theme for 320x240 resolution devices.
 
 ## Changes
+
+You can see a diff of all changes [here](https://github.com/adriankeenan/rb-interpod-ak/compare/original...main). The untouched theme exists on the `original` branch.
 
 ### WPS
 
