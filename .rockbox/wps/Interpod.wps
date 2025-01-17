@@ -38,7 +38,6 @@
 %xl(Y,repeatShuffle.bmp,5,0)
 %xl(Z,repeatAB.bmp,1,0)
 %xl(S,shuffle.bmp,42,0)
-%xl(L,losslessIndicator.bmp,0,0)
 %xl(vbd,vb_backdrop.bmp,0,0)
 %xl(pbi,pb_backdrop.bmp,0,0)
 %xl(pbd,pb_active_backdrop.bmp,0,0)
@@ -179,22 +178,17 @@
 %pb(0,0,-,9,image,pb_active.bmp,backdrop,pbd)
 #
 #	Time Current
-%Vl(timeprogresslossless,18,-22,87,-,3)
+%Vl(timeprogresslossless,18,-22,60,-,3)
 %Vf(6f6f6f)
 %Vb(f8f8f8)
 %s%al%pc
 #
-#	Display lossless indicator for lossless filetypes
+#	Display codec and frequency
 #
-#	4 = AIFF
-#	5 = WAV
-#	7 = FLAC
-#	11 = ALAC
-#	13 = Shorten
-#
-%Vl(timeprogresslossless,120,-19,66,11,-)
+%Vl(timeprogresslossless,60,-22,200,-,3)
+%Vf(6f6f6f)
 %Vb(f8f8f8)
-%?or(%if(%fc, =, 4),%if(%fc, =, 5),%if(%fc, =, 7),%if(%fc, =, 11),%if(%fc, =, 13))<%xd(L)>
+%ac%fc %fkKhz
 #
 #
 #	Time Remaining

@@ -4,7 +4,10 @@ My personal fork of the Interpod rockbox theme for 320x240 resolution devices
 
 ## Changes
 
-- __WPS: Add clock to top left corner.__ Appears before player status and hold icons. Removes sleep timer.
+### WPS
+
+- __Add clock to top left corner.__ Appears before player status and hold icons. Removes sleep timer.
+- __Show codec and frequency.__ Replaces lossless badge.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
