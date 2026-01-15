@@ -10,6 +10,7 @@ You can see a diff of all changes [here](https://github.com/adriankeenan/rb-inte
 
 - __Add clock to top left corner.__ Appears before player status and hold icons. Removes sleep timer.
 - __Show codec and frequency.__ Replaces lossless badge.
+- __Show album year.__ Next to album name, if set.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
