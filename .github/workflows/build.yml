@@ -15,7 +15,9 @@ jobs:
         run: git clone --depth=1 https://github.com/Rockbox/rockbox.git
 
       - name: Install build dependencies
-        run: sudo apt-get install -y build-essential
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libsdl-dev
 
       - name: Configure
         run: rockbox/tools/configure --type=C --target=ipodvideo
