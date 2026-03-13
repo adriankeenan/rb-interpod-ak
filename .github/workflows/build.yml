@@ -22,7 +22,7 @@ jobs:
       - name: Configure
         run: rockbox/tools/configure --type=C --target=ipodvideo
 
-      - name: Build theme
+      - name: Build checkwps
         run: make
 
       - name: Validate WPS
