@@ -1,0 +1,32 @@
+name: Build Theme
+
+on:
+  push:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout theme
+        uses: actions/checkout@v4
+
+      - name: Clone Rockbox
+        run: git clone --depth=1 https://github.com/Rockbox/rockbox.git
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libsdl-dev
+
+      - name: Configure
+        run: rockbox/tools/configure --type=C --target=ipodvideo
+
+      - name: Build checkwps
+        run: make
+
+      - name: Validate WPS
+        run: ./checkwps.ipodvideo .rockbox/wps/Interpod-ak.wps
+
+      - name: Validate SBS
+        run: ./checkwps.ipodvideo .rockbox/wps/Interpod-ak.sbs
