@@ -86,40 +86,53 @@ def inject_wps():
 # Palette reference image
 # --------------------------------------------------------------------------- #
 
-COLS = 10
-SWATCH = 96
-PAD = 8
-LABEL_H = 26
+COLS = palette.COLS
+CELL = 140
+GAP = 4
+MARGIN = 20
+TITLE_H = 44
+BG = (26, 26, 26)
 
 
 def _render_png(path):
     from PIL import Image, ImageDraw, ImageFont
 
     rows = (palette.STEPS + COLS - 1) // COLS
-    cell_w = SWATCH + PAD
-    cell_h = SWATCH + LABEL_H + PAD
-    width = COLS * cell_w + PAD
-    height = rows * cell_h + PAD
-    img = Image.new("RGB", (width, height), (255, 255, 255))
+    width = MARGIN * 2 + COLS * CELL + (COLS - 1) * GAP
+    height = MARGIN + TITLE_H + rows * CELL + (rows - 1) * GAP + MARGIN
+    img = Image.new("RGB", (width, height), BG)
     draw = ImageDraw.Draw(img)
     try:
-        font = ImageFont.load_default()
-    except Exception:
-        font = None
+        name_font = ImageFont.load_default(size=20)
+        hex_font = ImageFont.load_default(size=15)
+        title_font = ImageFont.load_default(size=26)
+    except TypeError:  # older Pillow: load_default takes no size
+        name_font = hex_font = title_font = ImageFont.load_default()
+
+    draw.text(
+        (MARGIN, MARGIN),
+        "Interpod-ak WPS palette - 100 colours, RGB565-snapped",
+        fill=(235, 235, 235),
+        font=title_font,
+    )
     for n in range(palette.STEPS):
         col = n % COLS
         row = n // COLS
-        x = PAD + col * cell_w
-        y = PAD + row * cell_h
-        draw.rectangle([x, y, x + SWATCH, y + SWATCH], fill=palette.cn_to_rgb(n))
-        label = "%s  #%s" % (palette.cn_name(n), palette.cn_to_hex(n))
-        draw.text((x, y + SWATCH + 6), label, fill=(0, 0, 0), font=font)
+        x = MARGIN + col * (CELL + GAP)
+        y = MARGIN + TITLE_H + row * (CELL + GAP)
+        rgb = palette.cn_to_rgb(n)
+        draw.rectangle([x, y, x + CELL, y + CELL], fill=rgb)
+        # Readable label colour: white on dark swatches, black on light ones.
+        luminance = 0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]
+        ink = (20, 20, 20) if luminance > 140 else (245, 245, 245)
+        draw.text((x + 8, y + 6), palette.cn_name(n), fill=ink, font=name_font)
+        draw.text((x + 8, y + 30), palette.cn_to_hex(n), fill=ink, font=hex_font)
     img.save(path)
     print("wrote %s" % os.path.relpath(path, REPO_ROOT))
 
 
 def _render_bmp(path):
-    """Dependency-free fallback: a simple 101-column colour strip as a BMP."""
+    """Dependency-free fallback: a simple colour strip (one column per swatch) as a BMP."""
     strip_h = 120
     width = palette.STEPS
     height = strip_h

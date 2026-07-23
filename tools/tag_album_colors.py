@@ -39,11 +39,6 @@ MIN_SAT = 0.20
 MIN_VAL = 0.15
 
 
-def _hue(rgb):
-    r, g, b = rgb
-    return colorsys.rgb_to_hsv(r / 255.0, g / 255.0, b / 255.0)[0] * 360.0
-
-
 def _vibrance(rgb):
     r, g, b = rgb
     _, s, v = colorsys.rgb_to_hsv(r / 255.0, g / 255.0, b / 255.0)
@@ -83,9 +78,10 @@ def colours_for_cover(cover_path):
     if not swatches:
         swatches = [thief.get_color(quality=1)]
 
-    # Background = the colour covering the most area of the cover.
+    # Background = the colour covering the most area of the cover, snapped to
+    # the nearest palette swatch (matching hue and shade together).
     bg_rgb = _coverage_dominant(cover_path, swatches)
-    bg_cn = palette.hue_to_cn(_hue(bg_rgb))
+    bg_cn = palette.nearest_cn(bg_rgb)
 
     # Accent = the most vibrant swatch (highest saturation * value), skipping
     # near-grey / near-black entries that have no meaningful hue.
@@ -100,7 +96,7 @@ def colours_for_cover(cover_path):
             best_score = score
             best = rgb
     accent_rgb = best if best is not None else bg_rgb
-    accent_cn = palette.hue_to_cn(_hue(accent_rgb))
+    accent_cn = palette.nearest_cn(accent_rgb)
 
     return bg_cn, accent_cn
 

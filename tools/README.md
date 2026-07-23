@@ -9,13 +9,17 @@ The theme drives two colours from the currently playing track's ID3 tags:
 | Full-screen background   | Comment  | `%iC`   |
 | Accent foreground (artist) | Composer | `%ic`   |
 
-Each tag holds a value `c0` .. `c100` naming a position on a vivid rainbow
-(`hue = N × 3.6°`, full saturation/brightness — `c0` is red and the sweep wraps
-back to red at `c100`). See the reference image at [`../docs/palette.png`](../docs/palette.png).
+Each tag holds a value `c00` .. `c99` from a 10×10 palette that is snapped to the
+iPod Video's RGB565 display colours: the **units** digit picks the hue (0 red,
+1 orange, 2 yellow, 3 yellow-green, 4 green, 5 cyan, 6 blue, 7 violet, 8 magenta,
+9 neutral) and the **tens** digit picks the shade, from pale (0) to dark (9), so
+every hue is available at ten saturation/brightness levels. See the reference
+image at [`../docs/palette.png`](../docs/palette.png).
 
 ## `palette.py`
 
-Shared, stdlib-only mapping (`cn_to_hex`, `cn_to_rgb`, `hue_to_cn`) imported by
+Shared, stdlib-only mapping (the `PALETTE` table plus `cn_to_hex`, `cn_to_rgb`,
+`nearest_cn`) imported by
 both scripts so the theme and the tagger agree on one palette.
 
 ## `generate_palette.py`
@@ -48,7 +52,7 @@ For every folder that contains a `cover.jpg` and one or more `.flac` files it:
 - picks the **background** as the colour covering the most of the cover,
 - picks the **accent** as the most vibrant colour on the cover,
 
-maps both to the nearest `cN`, and writes `COMMENT` (background) and `COMPOSER`
+snaps both to the nearest palette swatch, and writes `COMMENT` (background) and `COMPOSER`
 (accent) into every FLAC in that folder.
 
 Colour extraction uses [ColorThief]; tags are written with [pytaglib].
