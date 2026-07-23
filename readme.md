@@ -11,6 +11,9 @@ You can see a diff of all changes [here](https://github.com/adriankeenan/rb-inte
 - __Add clock to top left corner.__ Appears before player status and hold icons. Removes sleep timer.
 - __Show codec and frequency.__ Replaces lossless badge.
 - __Show album year.__ Next to album name, if set.
+- __Per-track colours from ID3 tags.__ The full-screen background colour is driven by the __comment__ tag and the accent (artist-line) colour by the __composer__ tag. Each holds a value `c0`–`c100` naming a position on a vivid rainbow (see the palette below). When a tag is absent or not a `cN` value the theme falls back to its original backdrop and pink accent. The [`tools/`](tools/) scripts generate the colour tables and can auto-tag a FLAC library from each album's `cover.jpg`.
+
+![Colour palette](docs/palette.png)
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
