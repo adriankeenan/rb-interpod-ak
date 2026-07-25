@@ -47,25 +47,23 @@ them from each album's `cover.jpg`:
 python tools/tag_album_colors.py /path/to/music
 ```
 
-For every folder that contains a `cover.jpg` and one or more `.flac` files it:
+For every `cover.jpg` found under the start folder it extracts two colours with
+[Material You] (`Score.score(ImageQuantizeCelebi(...))`):
 
-- picks the **background** as the colour covering the most of the cover,
-- picks the **accent** as the most vibrant colour on the cover,
+- the **background** is the top-ranked colour,
+- the **accent** is the second colour,
 
 snaps both to the nearest palette swatch, and writes `COMMENT` (background) and `COMPOSER`
-(accent) into every FLAC in that folder.
-
-Colour extraction uses [ColorThief]; tags are written with [pytaglib].
+(accent) into every FLAC in that folder. Tags are written with [pytaglib].
 
 ### Dependencies
 
 ```sh
-pip install colorthief pytaglib
+pip install materialyoucolor pytaglib
 ```
 
-`generate_palette.py` additionally uses [Pillow] (installed as a ColorThief
-dependency) for the labelled PNG.
+`generate_palette.py` additionally uses [Pillow] for the labelled PNG.
 
 [Pillow]: https://python-pillow.org/
-[ColorThief]: https://github.com/fengsp/color-thief-py
+[Material You]: https://github.com/T-Dynamos/materialyoucolor-python
 [pytaglib]: https://github.com/supermihi/pytaglib

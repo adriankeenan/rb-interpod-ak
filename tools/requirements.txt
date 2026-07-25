@@ -1,4 +1,4 @@
-# Dependencies for tools/tag_album_colors.py (and the PNG output of
-# tools/generate_palette.py, via Pillow which ColorThief pulls in).
-colorthief
+# Dependencies for tools/tag_album_colors.py.
+# tools/generate_palette.py additionally uses Pillow for the PNG output.
+materialyoucolor
 pytaglib
