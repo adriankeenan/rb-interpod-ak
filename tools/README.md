@@ -47,11 +47,12 @@ them from each album's `cover.jpg`:
 python tools/tag_album_colors.py /path/to/music
 ```
 
-For every `cover.jpg` found under the start folder it extracts two colours with
-[Material You] (`Score.score(ImageQuantizeCelebi(...))`):
+For every `cover.jpg` found under the start folder it builds a [Material You] theme
+(`themeFromImage`) and takes two roles from the **light** scheme (used so the accent
+stays legible on the theme's light info panels):
 
-- the **background** is the top-ranked colour,
-- the **accent** is the second colour,
+- the **background** is `primary`,
+- the **accent** is `tertiary`,
 
 snaps both to the nearest palette swatch, and writes `COMMENT` (background) and `COMPOSER`
 (accent) into every FLAC in that folder. Tags are written with [pytaglib].
@@ -59,11 +60,11 @@ snaps both to the nearest palette swatch, and writes `COMMENT` (background) and 
 ### Dependencies
 
 ```sh
-pip install materialyoucolor pytaglib
+pip install material-color-utilities-python pytaglib
 ```
 
 `generate_palette.py` additionally uses [Pillow] for the labelled PNG.
 
 [Pillow]: https://python-pillow.org/
-[Material You]: https://github.com/T-Dynamos/materialyoucolor-python
+[Material You]: https://github.com/avanisubbiah/material-color-utilities-python
 [pytaglib]: https://github.com/supermihi/pytaglib

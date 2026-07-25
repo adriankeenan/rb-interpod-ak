@@ -1,4 +1,4 @@
 # Dependencies for tools/tag_album_colors.py.
 # tools/generate_palette.py additionally uses Pillow for the PNG output.
-materialyoucolor
+material-color-utilities-python
 pytaglib
