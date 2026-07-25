@@ -1,6 +1,6 @@
 # Interpod
 
-My personal fork of the Interpod rockbox theme for 320x240 resolution devices.
+My personal fork of the [Interpod](https://themes.rockbox.org/index.php?themeid=3359) rockbox theme for 320x240 resolution devices.
 
 ## Changes
 
@@ -15,6 +15,8 @@ You can see a diff of all changes [here](https://github.com/adriankeenan/rb-inte
 ### SBS
 
 - __Add progress bar to mini player.__ A fine line across the top of the bottom mini player shows track progress while playing. Filled in the accent colour (f24e61).
+
+## Original readme
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
