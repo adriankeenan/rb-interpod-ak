@@ -32,24 +32,34 @@ SCREEN_H = 240
 
 
 def _bg_block():
-    """Flat conditionals: comment tag cN -> full-screen fill of that colour."""
-    lines = []
-    for n in range(palette.STEPS):
-        lines.append(
-            "%%?if(%%iC,=,%s)<%%dr(0,0,%d,%d,%s)>"
-            % (palette.cn_name(n), SCREEN_W, SCREEN_H, palette.cn_to_hex(n))
-        )
-    return lines
+    """Comment tag cN -> full-screen fill, as a SINGLE line of conditionals.
+
+    All conditionals live on one physical line so the viewport gains no extra
+    display lines (each newline-separated line advances the skin engine's line
+    counter). Exactly one conditional matches and fires its %dr fill.
+    """
+    conds = "".join(
+        "%%?if(%%iC,=,%s)<%%dr(0,0,%d,%d,%s)>"
+        % (palette.cn_name(n), SCREEN_W, SCREEN_H, palette.cn_to_hex(n))
+        for n in range(palette.STEPS)
+    )
+    return [conds]
 
 
 def _fg_block():
-    """Flat conditionals: composer tag cN -> accent foreground of that colour."""
-    lines = []
-    for n in range(palette.STEPS):
-        lines.append(
-            "%%?if(%%ic,=,%s)<%%Vf(%s)>" % (palette.cn_name(n), palette.cn_to_hex(n))
-        )
-    return lines
+    """Composer tag cN -> accent foreground, as a SINGLE line of conditionals.
+
+    Prefixed with the fallback %Vf(f24e61): %Vf is a NOBREAK tag, so a leading
+    one keeps this line from advancing the line counter (the artist text on the
+    next line stays at the top of its viewport), and it sets the accent back to
+    the theme pink when the composer tag isn't a cNN value. A matching
+    conditional overrides it; the chosen foreground persists to the text line.
+    """
+    conds = "".join(
+        "%%?if(%%ic,=,%s)<%%Vf(%s)>" % (palette.cn_name(n), palette.cn_to_hex(n))
+        for n in range(palette.STEPS)
+    )
+    return ["%Vf(f24e61)" + conds]
 
 
 def _inject(text, begin_marker, end_marker, block_lines):
