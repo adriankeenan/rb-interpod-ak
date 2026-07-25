@@ -12,6 +12,10 @@ You can see a diff of all changes [here](https://github.com/adriankeenan/rb-inte
 - __Show codec and frequency.__ Replaces lossless badge.
 - __Show album year.__ Next to album name, if set.
 
+### SBS
+
+- __Add progress bar to mini player.__ A fine line across the top of the bottom mini player shows track progress while playing. Filled in the accent colour (f24e61).
+
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │   d888888b d8b   db d888888b d88888b d8888b. d8888b.  .d88b.  d8888b.   │
