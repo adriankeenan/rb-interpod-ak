@@ -44,7 +44,7 @@
 # ---------
 #
 # 	Display bar on bottom with album art, track info or volume indicator as necessary
-%?mp<%Vd(bottombarsmall)%?mv(1.2)<%?if(%pv, >, 0)<%Vd(volumebar_small_clip)|%Vd(volumebar_small_noclip)>|%Vd(filledbottombarsmall)>|%Vd(bottombar)%?mv(1.2)<%?C<%Vd(albumart)|%Vd(volume_left)>%Vd(volumebar)|%?C<%Vd(albumart)%Vd(currenttrack)|%Vd(currenttrackshiftedleft)>>>
+%?mp<%Vd(bottombarsmall)%?mv(1.2)<%?if(%pv, >, 0)<%Vd(volumebar_small_clip)|%Vd(volumebar_small_noclip)>|%Vd(filledbottombarsmall)>|%Vd(bottombar)%Vd(progressbar)%?mv(1.2)<%?C<%Vd(albumart)|%Vd(volume_left)>%Vd(volumebar)|%?C<%Vd(albumart)%Vd(currenttrack)|%Vd(currenttrackshiftedleft)>>>
 #
 # 	Set up UI Viewport 
 # 	Use larger viewport if nothing is playing
@@ -194,6 +194,12 @@
 #
 %dr(0,0,-,1,F6F6F6)
 %dr(0,1,-,1,E9E9E9)
+#
+#	Track progress bar - fine line across the top of the mini player
+%Vl(progressbar,0,-36,-,1,-)
+%Vf(f24e61)
+%Vb(E3E3E3)
+%pb(0,0,-,1,noborder)
 #
 %Vl(bottombarsmall,0,-11,-,-,-)
 %Vf(ededed)
