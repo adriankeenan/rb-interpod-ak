@@ -90,7 +90,9 @@
 # 	Player Status Icon, in upper left corner
 %V(49,5,15,16,-)
 %Vf(000000)
-%Vb(f8f8f8)
+# BEGIN panelbg-status-icon
+%Vb(f8f8f8)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-status-icon
 # 	Display appropriate icon (P) for the current state
 #
 # 	Player Status:
@@ -109,30 +111,40 @@
 # 	Battery Icon in upper right corner
 %V(-32,0,-,20,3)
 %Vf(000000)
-%Vb(f8f8f8)
+# BEGIN panelbg-battery-icon
+%Vb(f8f8f8)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-battery-icon
 %?bp<%?bl<%xd(Ba)|%xd(Ba)|%xd(Ba)|%xd(Bb)|%xd(Bb)|%xd(Bb)|%xd(Bb)|%xd(Bc)|%xd(Bc)|%xd(Bc)|%xd(Bc)|%xd(Bc)|%xd(Bc)|%xd(Bd)|%xd(Bd)|%xd(Bd)|%xd(Bd)|%xd(Bd)|%xd(Bd)|%xd(Bd)|%xd(Be)|%xd(Be)>|%?bl<%xd(Bf)|%xd(Bf)|%xd(Bf)|%xd(Bg)|%xd(Bg)|%xd(Bg)|%xd(Bg)|%xd(Bh)|%xd(Bh)|%xd(Bh)|%xd(Bh)|%xd(Bh)|%xd(Bh)|%xd(Bi)|%xd(Bi)|%xd(Bi)|%xd(Bi)|%xd(Bi)|%xd(Bi)|%xd(Bi)|%xd(Bj)|%xd(Bj)>>
 #
 #
 # 	Hold Slider Icon, to the right of the player status icon
 %Vl(lock,70,7,9,12,-)
-%Vb(f8f8f8)
+# BEGIN panelbg-hold-lock
+%Vb(f8f8f8)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-hold-lock
 %xd(Ab)
 #
 #	Unlocked Hold slider
 %Vl(unlocked,70,7,9,12,-)
-%Vb(f8f8f8)
+# BEGIN panelbg-hold-unlocked
+%Vb(f8f8f8)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-hold-unlocked
 #
 #	Battery percentage
 %Vl(batterytext,-70,5,38,15,3)
 %Vf(000000)
-%Vb(f8f8f8)
+# BEGIN panelbg-battery-text
+%Vb(f8f8f8)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-battery-text
 %?if(%bl, =, 100)<CGD|%bl %%>
 #
 #
 #	Clock
 %V(5,5,43,15,3)
 %Vf(000000)
-%Vb(f8f8f8)
+# BEGIN panelbg-clock
+%Vb(f8f8f8)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-clock
 %cH:%cM
 #
 # --------------------------------------
@@ -143,7 +155,9 @@
 #	displayed in the upper right corner, below title bar
 %V(-79,-97,-,30,-)
 %Vf(6f6f6f)
-%Vb(f8f8f8)
+# BEGIN panelbg-repeat-shuffle
+%Vb(f8f8f8)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-repeat-shuffle
 %?mm<|%xd(Ra)|%xd(Ra)%xd(X)|%xd(Ra)%xd(Y)|%xd(Ra)%xd(Z)>
 %?if(%ps, =, s)<%xd(S)|>
 #
@@ -151,7 +165,9 @@
 #	(displayed in upper left corner, below title bar)
 %V(18,-100,120,14,3)
 %Vf(6f6f6f)
-%Vb(f8f8f8)
+# BEGIN panelbg-playlist-pos
+%Vb(f8f8f8)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-playlist-pos
 %al%pp %Sx(of) %pe
 #
 # 	Album Art
@@ -161,7 +177,9 @@
 #	Current Track or filename
 %V(18,-82,-20,22,8)
 %Vf(000000)
-%Vb(f8f8f8)
+# BEGIN panelbg-title
+%Vb(f8f8f8)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-title
 %s%al%?it<%it|%fn>
 #
 #	Current Artist
@@ -171,7 +189,9 @@
 # BEGIN composer-fg
 %Vf(f24e61)%?if(%ic,=,c00)<%Vf(f7aead)>%?if(%ic,=,c01)<%Vf(f7c7ad)>%?if(%ic,=,c02)<%Vf(f7dbad)>%?if(%ic,=,c03)<%Vf(d6f3ad)>%?if(%ic,=,c04)<%Vf(adf3d6)>%?if(%ic,=,c05)<%Vf(adf3f7)>%?if(%ic,=,c06)<%Vf(add3f7)>%?if(%ic,=,c07)<%Vf(c6aef7)>%?if(%ic,=,c08)<%Vf(f7aee7)>%?if(%ic,=,c09)<%Vf(efefef)>%?if(%ic,=,c10)<%Vf(de9294)>%?if(%ic,=,c11)<%Vf(deae94)>%?if(%ic,=,c12)<%Vf(dec794)>%?if(%ic,=,c13)<%Vf(bddf94)>%?if(%ic,=,c14)<%Vf(94dfbd)>%?if(%ic,=,c15)<%Vf(94dfde)>%?if(%ic,=,c16)<%Vf(94bade)>%?if(%ic,=,c17)<%Vf(ad92de)>%?if(%ic,=,c18)<%Vf(de92d6)>%?if(%ic,=,c19)<%Vf(dedbde)>%?if(%ic,=,c20)<%Vf(ce797b)>%?if(%ic,=,c21)<%Vf(ce9a7b)>%?if(%ic,=,c22)<%Vf(ceb27b)>%?if(%ic,=,c23)<%Vf(a5cf7b)>%?if(%ic,=,c24)<%Vf(7bcfa5)>%?if(%ic,=,c25)<%Vf(7bcfce)>%?if(%ic,=,c26)<%Vf(7ba6ce)>%?if(%ic,=,c27)<%Vf(9479ce)>%?if(%ic,=,c28)<%Vf(ce79c6)>%?if(%ic,=,c29)<%Vf(c6c3c6)>%?if(%ic,=,c30)<%Vf(bd6163)>%?if(%ic,=,c31)<%Vf(bd8263)>%?if(%ic,=,c32)<%Vf(bd9e63)>%?if(%ic,=,c33)<%Vf(8cba63)>%?if(%ic,=,c34)<%Vf(63ba94)>%?if(%ic,=,c35)<%Vf(63babd)>%?if(%ic,=,c36)<%Vf(6392bd)>%?if(%ic,=,c37)<%Vf(7b61bd)>%?if(%ic,=,c38)<%Vf(bd61ad)>%?if(%ic,=,c39)<%Vf(adaead)>%?if(%ic,=,c40)<%Vf(ad4d4a)>%?if(%ic,=,c41)<%Vf(ad6d4a)>%?if(%ic,=,c42)<%Vf(ad8a4a)>%?if(%ic,=,c43)<%Vf(7baa4a)>%?if(%ic,=,c44)<%Vf(4aaa7b)>%?if(%ic,=,c45)<%Vf(4aaaad)>%?if(%ic,=,c46)<%Vf(4a7dad)>%?if(%ic,=,c47)<%Vf(6b4dad)>%?if(%ic,=,c48)<%Vf(ad4d9c)>%?if(%ic,=,c49)<%Vf(949694)>%?if(%ic,=,c50)<%Vf(943c39)>%?if(%ic,=,c51)<%Vf(945d39)>%?if(%ic,=,c52)<%Vf(947939)>%?if(%ic,=,c53)<%Vf(6b9639)>%?if(%ic,=,c54)<%Vf(39966b)>%?if(%ic,=,c55)<%Vf(399694)>%?if(%ic,=,c56)<%Vf(396994)>%?if(%ic,=,c57)<%Vf(5a3c94)>%?if(%ic,=,c58)<%Vf(943c8c)>%?if(%ic,=,c59)<%Vf(7b7d7b)>%?if(%ic,=,c60)<%Vf(842c29)>%?if(%ic,=,c61)<%Vf(844d29)>%?if(%ic,=,c62)<%Vf(846529)>%?if(%ic,=,c63)<%Vf(5a8629)>%?if(%ic,=,c64)<%Vf(29865a)>%?if(%ic,=,c65)<%Vf(298684)>%?if(%ic,=,c66)<%Vf(295984)>%?if(%ic,=,c67)<%Vf(4a2c84)>%?if(%ic,=,c68)<%Vf(842c73)>%?if(%ic,=,c69)<%Vf(6b696b)>%?if(%ic,=,c70)<%Vf(732021)>%?if(%ic,=,c71)<%Vf(733c21)>%?if(%ic,=,c72)<%Vf(735521)>%?if(%ic,=,c73)<%Vf(4a7121)>%?if(%ic,=,c74)<%Vf(21714a)>%?if(%ic,=,c75)<%Vf(217173)>%?if(%ic,=,c76)<%Vf(214973)>%?if(%ic,=,c77)<%Vf(392073)>%?if(%ic,=,c78)<%Vf(732063)>%?if(%ic,=,c79)<%Vf(525152)>%?if(%ic,=,c80)<%Vf(5a1410)>%?if(%ic,=,c81)<%Vf(5a3010)>%?if(%ic,=,c82)<%Vf(5a4510)>%?if(%ic,=,c83)<%Vf(395d10)>%?if(%ic,=,c84)<%Vf(105d39)>%?if(%ic,=,c85)<%Vf(105d5a)>%?if(%ic,=,c86)<%Vf(10385a)>%?if(%ic,=,c87)<%Vf(29145a)>%?if(%ic,=,c88)<%Vf(5a1452)>%?if(%ic,=,c89)<%Vf(393c39)>%?if(%ic,=,c90)<%Vf(4a0c08)>%?if(%ic,=,c91)<%Vf(4a2008)>%?if(%ic,=,c92)<%Vf(4a3408)>%?if(%ic,=,c93)<%Vf(294d08)>%?if(%ic,=,c94)<%Vf(084d29)>%?if(%ic,=,c95)<%Vf(084d4a)>%?if(%ic,=,c96)<%Vf(082c4a)>%?if(%ic,=,c97)<%Vf(210c4a)>%?if(%ic,=,c98)<%Vf(4a0c42)>%?if(%ic,=,c99)<%Vf(212421)>
 # END composer-fg
-%Vb(f8f8f8)
+# BEGIN panelbg-artist
+%Vb(f8f8f8)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-artist
 %al%s%?ia<%t(5)%?if(%ig,=,Classical)<%?ic<By %ic - >%ia|%ia>|%?it<%fn>>;%s%?id<%t(5)%id%?iy< [%iy]>|%t(0)>
 #
 #
@@ -182,33 +202,43 @@
 #	Progress Bar
 %Vl(pb,20,-32,-20,4,-)
 %Vf(9E9EA6)
-%Vb(E0E0E0)
+# BEGIN panelbg-progress
+%Vb(E0E0E0)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-progress
 %pb(0,0,-,4,image,pb.bmp,backdrop,pbi)
 #
 #
 %Vl(pb_active,20,-34,-20,9,-)
 %Vf(9E9EA6)
-%Vb(E0E0E0)
+# BEGIN panelbg-progress-active
+%Vb(E0E0E0)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-progress-active
 %pb(0,0,-,9,image,pb_active.bmp,backdrop,pbd)
 #
 #	Time Current
 %Vl(timeprogresslossless,18,-22,60,-,3)
 %Vf(6f6f6f)
-%Vb(f8f8f8)
+# BEGIN panelbg-time-elapsed
+%Vb(f8f8f8)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-time-elapsed
 %s%al%pc
 #
 #	Display codec and frequency
 #
 %Vl(timeprogresslossless,60,-22,200,-,3)
 %Vf(6f6f6f)
-%Vb(f8f8f8)
+# BEGIN panelbg-codec
+%Vb(f8f8f8)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-codec
 %ac%fc %fkKhz
 #
 #
 #	Time Remaining
 %Vl(timeprogresslossless,-87,-22,-20,-,3)
 %Vf(6f6f6f)
-%Vb(f8f8f8)
+# BEGIN panelbg-time-remaining
+%Vb(f8f8f8)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-time-remaining
 %s%ar-%pr
 #
 #
@@ -219,7 +249,9 @@
 #
 %Vl(volumebar,0,-28,-,18,-)
 %Vf(ededed)
-%Vb(ededed)
+# BEGIN panelbg-volumebar
+%Vb(ededed)%?if(%ss(-1,1,%iC),=,0)<%Vb(f7aead)>%?if(%ss(-1,1,%iC),=,1)<%Vb(f7c7ad)>%?if(%ss(-1,1,%iC),=,2)<%Vb(f7dbad)>%?if(%ss(-1,1,%iC),=,3)<%Vb(d6f3ad)>%?if(%ss(-1,1,%iC),=,4)<%Vb(adf3d6)>%?if(%ss(-1,1,%iC),=,5)<%Vb(adf3f7)>%?if(%ss(-1,1,%iC),=,6)<%Vb(add3f7)>%?if(%ss(-1,1,%iC),=,7)<%Vb(c6aef7)>%?if(%ss(-1,1,%iC),=,8)<%Vb(f7aee7)>%?if(%ss(-1,1,%iC),=,9)<%Vb(efefef)>
+# END panelbg-volumebar
 %x(speaker_mute,speaker_mute.bmp,39,4)
 %pv(58,6,204,9,vb.bmp,backdrop,vbd)
 %xd(speaker_loud)

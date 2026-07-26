@@ -62,6 +62,58 @@ def _fg_block():
     return ["%Vf(f24e61)" + conds]
 
 
+def _panel_bg_block(fallback_hex):
+    """Comment tag cNN -> panel background, TINTED to match the main fill's hue.
+
+    write_line() (skin_display.c) paints an opaque background rectangle behind
+    EVERY rendered line - text or icon - using the viewport's %Vb colour, so a
+    solid fill can never be made transparent. The best available fix is to give
+    each panel a colour from the same hue family as the main fill, so its box
+    blends in instead of standing out.
+
+    A full 100-way exact match (like the main fill) costs ~2 tokens per branch;
+    duplicated across every panel this blows Rockbox's skin memory budget
+    ("Memory limit exceeded" from checkwps once ~9 panels were added). Instead,
+    this matches only the HUE digit (the tag's last character, since values are
+    always the 2-digit "cNN") via %ss(-1,1,%iC), a 10-way check instead of 100 -
+    roughly a 6x cut in cost per panel. The colour used per hue is the palette's
+    palest shade (row 0, i.e. c00..c09) rather than the exact matching shade, so
+    the existing dark text/icon colours in these panels stay legible regardless
+    of how dark the main fill's shade is.
+
+    Prefixed with the panel's original fallback colour for when the comment tag
+    isn't a cNN value.
+    """
+    conds = "".join(
+        "%%?if(%%ss(-1,1,%%iC),=,%d)<%%Vb(%s)>" % (hue, palette.cn_to_hex(hue))
+        for hue in range(10)
+    )
+    return ["%%Vb(%s)%s" % (fallback_hex, conds)]
+
+
+# Every other panel viewport that sets its own background colour, so it can be
+# made to track the main fill instead of standing out as a mismatched box.
+# (marker name, original/fallback hex). Keep in sync with Interpod-ak.wps.
+PANEL_BACKGROUNDS = [
+    ("panelbg-status-icon", "f8f8f8"),
+    ("panelbg-battery-icon", "f8f8f8"),
+    ("panelbg-hold-lock", "f8f8f8"),
+    ("panelbg-hold-unlocked", "f8f8f8"),
+    ("panelbg-battery-text", "f8f8f8"),
+    ("panelbg-clock", "f8f8f8"),
+    ("panelbg-repeat-shuffle", "f8f8f8"),
+    ("panelbg-playlist-pos", "f8f8f8"),
+    ("panelbg-title", "f8f8f8"),
+    ("panelbg-artist", "f8f8f8"),
+    ("panelbg-progress", "E0E0E0"),
+    ("panelbg-progress-active", "E0E0E0"),
+    ("panelbg-time-elapsed", "f8f8f8"),
+    ("panelbg-codec", "f8f8f8"),
+    ("panelbg-time-remaining", "f8f8f8"),
+    ("panelbg-volumebar", "ededed"),
+]
+
+
 def _inject(text, begin_marker, end_marker, block_lines):
     """Replace the content between two marker lines with block_lines."""
     lines = text.splitlines()
@@ -84,6 +136,13 @@ def inject_wps():
         text = fh.read()
     updated = _inject(text, "# BEGIN comment-bg", "# END comment-bg", _bg_block())
     updated = _inject(updated, "# BEGIN composer-fg", "# END composer-fg", _fg_block())
+    for name, fallback_hex in PANEL_BACKGROUNDS:
+        updated = _inject(
+            updated,
+            "# BEGIN %s" % name,
+            "# END %s" % name,
+            _panel_bg_block(fallback_hex),
+        )
     if updated != text:
         with open(WPS_PATH, "w") as fh:
             fh.write(updated)
