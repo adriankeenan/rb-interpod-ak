@@ -63,32 +63,49 @@ def _fg_block():
 
 
 def _panel_bg_block(fallback_hex):
-    """Comment tag cNN -> panel background, TINTED to match the main fill's hue.
+    """Comment tag cNN -> panel background, matching the main fill EXACTLY.
 
     write_line() (skin_display.c) paints an opaque background rectangle behind
     EVERY rendered line - text or icon - using the viewport's %Vb colour, so a
-    solid fill can never be made transparent. The best available fix is to give
-    each panel a colour from the same hue family as the main fill, so its box
-    blends in instead of standing out.
+    solid fill can never be made transparent. The only fix is to give each
+    panel the SAME colour as the main fill, so its box blends in seamlessly.
 
-    A full 100-way exact match (like the main fill) costs ~2 tokens per branch;
-    duplicated across every panel this blows Rockbox's skin memory budget
-    ("Memory limit exceeded" from checkwps once ~9 panels were added). Instead,
-    this matches only the HUE digit (the tag's last character, since values are
-    always the 2-digit "cNN") via %ss(-1,1,%iC), a 10-way check instead of 100 -
-    roughly a 6x cut in cost per panel. The colour used per hue is the palette's
-    palest shade (row 0, i.e. c00..c09) rather than the exact matching shade, so
-    the existing dark text/icon colours in these panels stay legible regardless
-    of how dark the main fill's shade is.
+    A flat 100-way exact match (one %?if(%iC,=,cNN) per value, like the main
+    fill uses) costs ~2 tokens per branch; duplicated across every panel this
+    blows Rockbox's skin memory budget ("Memory limit exceeded" from checkwps
+    once ~9 panels had a copy). Instead this uses %ss(start,len,TAG,number),
+    which extracts a substring AND reports its numeric value as a 1-based
+    branch index (skin_tokens.c: SKIN_TOKEN_SUBSTRING's expect_number path) -
+    the same mechanism tags like %mp/%bl use for their own <branch|branch|...>
+    forms. Nesting one 10-way selector (hue digit) inside another (shade
+    digit) reconstructs the exact 100-value lookup in ~1/4 the tokens of the
+    flat form, since only ~20 branches are declared instead of 100.
 
-    Prefixed with the panel's original fallback colour for when the comment tag
-    isn't a cNN value.
+    Guarding this against an empty/untagged comment is trickier than it looks:
+    %?if cannot wrap a nested tag that itself has 3+ pipe-branches (confirmed
+    empirically - checkwps reports "Expected list close" / "Parser callback
+    returned error" for that shape), so a prefix check like "does %iC start
+    with c" can't be layered on top here. Instead this relies on a different,
+    already-safe fallback path: when %iC is empty, %ss returns NULL *before*
+    computing a branch index, so evaluate_conditional's index is left at its
+    untouched default of num_options - i.e. the LAST branch. Declaring an 11th
+    outer (shade) branch and putting the fallback colour there means an empty
+    comment naturally lands on it, no guard needed. (A non-digit character in
+    an otherwise-present comment instead lands on the FIRST branch regardless
+    of branch count - Rockbox's own evaluate_conditional behaviour, not
+    something decidable from the skin file - so that narrower case, e.g. a
+    pre-existing comment that happens to be exactly "cX?" for digit X and
+    non-digit ?, can still render an unintended colour. Anything written by
+    tools/tag_album_colors.py is always exactly "cNN" and unaffected.)
     """
-    conds = "".join(
-        "%%?if(%%ss(-1,1,%%iC),=,%d)<%%Vb(%s)>" % (hue, palette.cn_to_hex(hue))
-        for hue in range(10)
-    )
-    return ["%%Vb(%s)%s" % (fallback_hex, conds)]
+    shade_branches = []
+    for shade in range(10):
+        hue_branches = [
+            "%%Vb(%s)" % palette.cn_to_hex(shade * 10 + hue) for hue in range(10)
+        ]
+        shade_branches.append("%%ss(-1,1,%%iC,number)<%s>" % "|".join(hue_branches))
+    shade_branches.append("%%Vb(%s)" % fallback_hex)  # 11th branch: empty %iC fallback
+    return ["%%ss(1,1,%%iC,number)<%s>" % "|".join(shade_branches)]
 
 
 # Every other panel viewport that sets its own background colour, so it can be
